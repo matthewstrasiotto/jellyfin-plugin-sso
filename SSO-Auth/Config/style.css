@@ -1,3 +1,42 @@
+.sso-role-mapping-container,
+.sso-bordered-list {
+  /*
+  border-color: #101010;
+  border-color: #383838;
+  */
+  border-color: rgba(255, 255, 255, 0.135);
+
+  padding-top: 0.5em;
+  border-style: solid;
+  margin-top: 0.25em;
+}
+.sso-role-mapping-container + .sso-role-mapping-container,
+.sso-bordered-list + .sso-bordered-list {
+  margin-top: 1em;
+}
+
+.sso-role-mapping-container .sso-folder-list {
+  padding-left: 1em;
+  padding-bottom: 0.25em;
+}
+
+.sso-role-mapping-input-label {
+  padding-left: 0.5em;
+}
+
+/*
+The following code is a derivative work of the code from the Jellyfin project, 
+which is licensed GPLv2. This code therefore is also licensed under the terms 
+of the GNU Public License, verison 2.
+
+For some reason, the emby-textarea element isn't exposed to plugin config pages.
+
+These stylesheet rules constitute a small enough portion of Jellyfin's source that
+my derivative work falls under fair use.
+
+https://www.gnu.org/licenses/gpl-faq.en.html#SourceCodeInDocumentation
+*/ 
+
 .emby-textarea {
   display: block;
   margin: 0;
@@ -33,30 +72,4 @@
 
 .emby-textarea + .fieldDescription {
   margin-top: 0.25em;
-}
-
-.sso-role-mapping-container,
-.sso-bordered-list {
-  /*
-  border-color: #101010;
-  border-color: #383838;
-  */
-  border-color: rgba(255, 255, 255, 0.135);
-
-  padding-top: 0.5em;
-  border-style: solid;
-  margin-top: 0.25em;
-}
-.sso-role-mapping-container + .sso-role-mapping-container,
-.sso-bordered-list + .sso-bordered-list {
-  margin-top: 1em;
-}
-
-.sso-role-mapping-container .sso-folder-list {
-  padding-left: 1em;
-  padding-bottom: 0.25em;
-}
-
-.sso-role-mapping-input-label {
-  padding-left: 0.5em;
 }
