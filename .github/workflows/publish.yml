@@ -1,0 +1,37 @@
+name: .NET
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build Dotnet
+      run: dotnet build --no-restore --warnaserror
+    - name: Build JPRM
+      uses: actions/jprm-build
+      with:
+        verbosity: debug
+        path: SSO-Auth
+        output: SSO-Auth/artifacts
+    - name: Publish output artifacts
+      uses: softprops/action-gh-release@v1
+      with:
+          tag_name: nightly
+          files: ${{ steps.jprm.outputs.artifact }}
+          body: |
+            Nightly build
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}      
