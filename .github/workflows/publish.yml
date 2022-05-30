@@ -1,0 +1,58 @@
+name: Publish 
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build Dotnet
+      run: dotnet build --no-restore --warnaserror
+    - name: "JPRM: Build"
+      id: jrpm
+      uses: oddstr13/jellyfin-plugin-repository-manager@master
+      with:
+        verbosity: debug
+        path: .
+        dotnet-target: "net6.0"
+        output: _dist
+    - run: mkdir -p _repo && cp manifest.json _repo/
+    - name: List Output Artifact
+      run: 'ls -la _dist _repo'    
+    - name: "JPRM: Repo"
+      run: 'python3 /home/runner/work/_actions/oddstr13/jellyfin-plugin-repository-manager/master/jprm/__init__.py repo add --url="https://cdn.jsdelivr.net/gh/${{ github.repository }}@nightly-build" _repo _dist/*.zip'
+    - name: List Output Artifact
+      run: 'ls -la _dist _repo'     
+    - name: Copy manifest to output
+      run: cp _repo/manifest.json _dist/
+
+    - name: Deploy Nightly
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        force_orphan: true
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: _repo
+        publish_branch: nightly-build
+    - name: Publish output artifacts
+      uses: softprops/action-gh-release@v1
+      with:
+          fail_on_unmatched_files: true
+          tag_name: nightly
+          files: |
+            _repo/*.json
+            _repo/sso-authentication/*
+          body: |
+            Nightly build
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}      
