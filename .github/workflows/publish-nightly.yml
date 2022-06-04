@@ -35,10 +35,11 @@ jobs:
       id: publish-assets
       uses: softprops/action-gh-release@v1
       with:
+          prerelease: true
           fail_on_unmatched_files: true
           tag_name: nightly
           files: |
-            _repo/sso-authentication/*
+            _dist/sso-authentication/*
           body: |
             Nightly build
       env:
@@ -52,6 +53,7 @@ jobs:
     - name: Publish output artifacts
       uses: softprops/action-gh-release@v1
       with:
+          prerelease: true
           fail_on_unmatched_files: true
           tag_name: nightly
           files: |
