@@ -45,7 +45,7 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: "Get Assets as json"
-      run: "echo ${{ steps.publish-assets.outputs.assets }} > assets.json"
+      run: "echo '${{ steps.publish-assets.outputs.assets }}' > assets.json"
     - name: Extract artifact url
       uses: sergeysova/jq-action@v2
       id: artifact-url
