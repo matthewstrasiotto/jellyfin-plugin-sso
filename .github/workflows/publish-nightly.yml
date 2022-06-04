@@ -52,6 +52,8 @@ jobs:
       with:
         cmd: |
           jq '.[] | select(.content_type=="application/zip") | .browser_download_url' assets.json --raw-output
+    - name: Echo artifcat url
+      run: echo ${{ steps.artifact-url.outputs.value }}
     - name: "JPRM: Repo"
       run: 'python3 /home/runner/work/_actions/oddstr13/jellyfin-plugin-repository-manager/master/jprm/__init__.py repo add --url="${{ steps.artifact-url.outputs.value }}" _repo _dist/*.zip'
     - name: List Output Artifact
