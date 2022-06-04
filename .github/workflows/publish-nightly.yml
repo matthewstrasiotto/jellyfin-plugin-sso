@@ -44,10 +44,16 @@ jobs:
             Nightly build
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: "Echo json"
-      run: "echo ${{ steps.publish-assets.outputs.assets }}"
+    - name: "Get Assets as json"
+      run: "echo ${{ steps.publish-assets.outputs.assets }} > assets.json"
+    - name: Extract artifact url
+      uses: sergeysova/jq-action@v2
+      id: artifact-url
+      with:
+        cmd: |
+          jq '.[] | select(.content_type=="application/zip") | .browser_download_url' assets.json --raw-output
     - name: "JPRM: Repo"
-      run: 'python3 /home/runner/work/_actions/oddstr13/jellyfin-plugin-repository-manager/master/jprm/__init__.py repo add --url="${{ fromJSON(steps.publish-assets.outputs.assets)[1].browser_download_url }}" _repo _dist/*.zip'
+      run: 'python3 /home/runner/work/_actions/oddstr13/jellyfin-plugin-repository-manager/master/jprm/__init__.py repo add --url="${{ steps.artifact-url.outputs.value }}" _repo _dist/*.zip'
     - name: List Output Artifact
       run: 'ls -la _dist _repo'     
     - name: Copy manifest to output
