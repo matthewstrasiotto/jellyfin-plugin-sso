@@ -39,7 +39,7 @@ jobs:
           fail_on_unmatched_files: true
           tag_name: nightly
           files: |
-            _dist/sso-authentication/*
+            _dist/*
           body: |
             Nightly build
       env:
