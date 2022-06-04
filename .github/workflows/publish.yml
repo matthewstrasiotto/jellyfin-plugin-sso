@@ -39,8 +39,9 @@ jobs:
     - upload
     steps:
     - name: Jellyfin plugin repo
-      uses: Kevinjil/jellyfin-plugin-repo-action@v0.2.2
+      uses: Kevinjil/jellyfin-plugin-repo-action@v0.3.0
       with:
+        ignorePrereleases: true
         githubToken: ${{ secrets.GITHUB_TOKEN }}
         repository: ${{ github.repository }}
         pagesBranch: manifest-release
