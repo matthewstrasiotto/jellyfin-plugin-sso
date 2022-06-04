@@ -17,10 +17,10 @@
       },
       {
         "changelog": "",
-        "checksum": "1a3ce3af45377181dc02849c76aa48bc",
-        "sourceUrl": "https://github.com/matthewstrasiotto/jellyfin-plugin-sso/releases/download/test-release/sso-authentication_3.3.0.0.zip",
+        "checksum": "79d5e43edcd7b5e92d1eddaecd16c11c",
+        "sourceUrl": "https://github.com/matthewstrasiotto/jellyfin-plugin-sso/releases/download/3rd-test-release/sso-authentication_3.3.0.0.zip",
         "targetAbi": "10.8.0.0",
-        "timestamp": "2022-06-04T04:54:51Z",
+        "timestamp": "2022-06-04T06:07:35Z",
         "version": "3.3.0.0"
       },
       {
