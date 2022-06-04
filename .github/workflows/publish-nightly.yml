@@ -33,7 +33,7 @@ jobs:
 
     - name: Publish output artifacts
       id: publish-assets
-      uses: softprops/action-gh-release@50195b
+      uses: softprops/action-gh-release@50195ba7f6f93d1ac97ba8332a178e008ad176aa
       with:
           prerelease: true
           fail_on_unmatched_files: true
@@ -53,7 +53,7 @@ jobs:
     - name: Copy manifest to output
       run: cp _repo/manifest.json _dist/
     - name: Publish output artifacts
-      uses: softprops/action-gh-release@50195b
+      uses: softprops/action-gh-release@50195ba7f6f93d1ac97ba8332a178e008ad176aa
       with:
           prerelease: true
           fail_on_unmatched_files: true
