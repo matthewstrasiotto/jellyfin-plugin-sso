@@ -19,6 +19,14 @@ jobs:
       run: dotnet restore
     - name: Build Dotnet
       run: dotnet build --no-restore --warnaserror
+    - name: "Flag as nightly in build.yaml"
+      uses: fjogeleit/yaml-update-action@v0.10.0
+      with:
+        valueFile: 'build.yaml'
+        propertyPath: 'version'
+        value: "0.0.0.9000"
+        commitChange: false
+        updateFile: true
     - name: "JPRM: Build"
       id: jrpm
       uses: oddstr13/jellyfin-plugin-repository-manager@master
@@ -27,15 +35,11 @@ jobs:
         path: .
         dotnet-target: "net6.0"
         output: _dist
-    - run: mkdir -p _repo && cp manifest.json _repo/
-    - name: List Output Artifact
-      run: 'ls -la _dist _repo'    
-
     - name: Publish output artifacts
       id: publish-assets
       uses: softprops/action-gh-release@50195ba7f6f93d1ac97ba8332a178e008ad176aa
       with:
-          prerelease: true
+          prerelease: false
           fail_on_unmatched_files: true
           tag_name: nightly
           files: |
@@ -44,33 +48,11 @@ jobs:
             Nightly build
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: "Get Assets as json"
-      run: "echo '${{ steps.publish-assets.outputs.assets }}' > assets.json"
-    - name: Extract artifact url
-      uses: sergeysova/jq-action@v2
-      id: artifact-url
+    - name: Jellyfin plugin repo
+      uses: Kevinjil/jellyfin-plugin-repo-action@v0.3.0
       with:
-        cmd: |
-          jq '.[] | select(.content_type=="application/zip") | .browser_download_url' assets.json --raw-output
-    - name: Echo artifcat url
-      run: |
-        cat assets.json
-        echo ${{ steps.artifact-url.outputs.value }}
-    - name: "JPRM: Repo"
-      run: 'python3 /home/runner/work/_actions/oddstr13/jellyfin-plugin-repository-manager/master/jprm/__init__.py repo add --url="${{ steps.artifact-url.outputs.value }}" _repo _dist/*.zip'
-    - name: List Output Artifact
-      run: 'ls -la _dist _repo'     
-    - name: Copy manifest to output
-      run: cp _repo/manifest.json _dist/
-    - name: Publish output artifacts
-      uses: softprops/action-gh-release@50195ba7f6f93d1ac97ba8332a178e008ad176aa
-      with:
-          prerelease: true
-          fail_on_unmatched_files: true
-          tag_name: nightly
-          files: |
-            _repo/*.json
-          body: |
-            Nightly build
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ignorePrereleases: true
+        githubToken: ${{ secrets.GITHUB_TOKEN }}
+        repository: ${{ github.repository }}
+        pagesBranch: manifest-release
+        pagesFile: manifest.json
