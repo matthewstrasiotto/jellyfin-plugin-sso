@@ -28,6 +28,14 @@ jobs:
         value: "0.0.0.9000"
         commitChange: false
         updateFile: true
+    - name: Flag as nightly in FileVersion
+      uses: Mudlet/xmlstarlet-action@master
+      with:
+        args: edit --inplace --update "//PropertyGroup/FileVersion[../RootNamespace='Jellyfin.Plugin.SSO_Auth']" -v "0.0.0.9000"  SSO-Auth/SSO-Auth.csproj
+    - name: Flag as nightly in AssemblyVersion
+      uses: Mudlet/xmlstarlet-action@master
+      with:
+        args: edit --inplace --update "//PropertyGroup/AssemblyVersion[../RootNamespace='Jellyfin.Plugin.SSO_Auth']" -v "0.0.0.9000"  SSO-Auth/SSO-Auth.csproj
     - name: "JPRM: Build"
       id: jrpm
       uses: oddstr13/jellyfin-plugin-repository-manager@master
