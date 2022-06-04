@@ -44,6 +44,8 @@ jobs:
             Nightly build
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: "Echo json"
+      run: "echo ${{ steps.publish-assets.outputs.assets }}"
     - name: "JPRM: Repo"
       run: 'python3 /home/runner/work/_actions/oddstr13/jellyfin-plugin-repository-manager/master/jprm/__init__.py repo add --url="${{ fromJSON(steps.publish-assets.outputs.assets)[1].browser_download_url }}" _repo _dist/*.zip'
     - name: List Output Artifact
