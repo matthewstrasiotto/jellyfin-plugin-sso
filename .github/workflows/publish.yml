@@ -1,4 +1,4 @@
-name: Publish 
+name: Publish Release
 
 on:
   release:
@@ -45,4 +45,3 @@ jobs:
         repository: ${{ github.repository }}
         pagesBranch: manifest-release
         pagesFile: manifest.json
-        
