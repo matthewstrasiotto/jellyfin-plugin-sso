@@ -32,6 +32,7 @@ jobs:
       id: jrpm
       uses: oddstr13/jellyfin-plugin-repository-manager@master
       with:
+        version: "0.0.0.9000"
         verbosity: debug
         path: .
         dotnet-target: "net6.0"
