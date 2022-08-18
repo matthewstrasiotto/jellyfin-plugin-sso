@@ -17,15 +17,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3.0.2
+        uses: actions/checkout@v2
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@c0d4ad69d8bd405d234f1c9166d383b7a4f69ed8 # tag=v2.1.0
+        uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "${{ inputs.dotnet-version }}"
 
       - name: Build Jellyfin Plugin
-        uses: oddstr13/jellyfin-plugin-repository-manager@a7795e010e63a6dcbbd5e6d8274f801d021f1045 # tag=v0.5.0
+        uses: oddstr13/jellyfin-plugin-repository-manager@b9e92867a6aa279d611a5ea80cf61f6358838c39
         id: jprm
         with:
           dotnet-target: "${{ inputs.dotnet-target }}"
