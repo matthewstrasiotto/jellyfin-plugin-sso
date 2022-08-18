@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/build.yaml
+    uses: ./.github/workflows/build.yml
     with:
       dotnet-version: "6.0.*"
       dotnet-target:  "net6.0"
