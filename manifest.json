@@ -8,6 +8,14 @@
     "owner": "9p4",
     "versions": [
       {
+        "changelog": "## What's Changed\r\n\r\n### Features\r\n\r\n* Implement Canonical Linking + Self Service by @matthewstrasiotto in https://github.com/9p4/jellyfin-plugin-sso/pull/34\r\n\r\n### Fixes\r\n\r\n* Fix ID Provider incorrectly resetting on login by @matthewstrasiotto in https://github.com/9p4/jellyfin-plugin-sso/pull/33\r\n\r\n\r\n### Documentation\r\n\r\n* Document Provider Specific Configuration, Small Readme Update by @matthewstrasiotto in https://github.com/9p4/jellyfin-plugin-sso/pull/31\r\n* docs: move build-from-source to contributing section, link vscode config by @matthewstrasiotto in https://github.com/9p4/jellyfin-plugin-sso/pull/63\r\n* docs: :memo: document new plugin install mechanism by @matthewstrasiotto in https://github.com/9p4/jellyfin-plugin-sso/pull/56\r\n\r\n### CI / Build\r\n* Add github action for publishing releases by @matthewstrasiotto in https://github.com/9p4/jellyfin-plugin-sso/pull/39\r\n* Revert \"Add github action for publishing releases\" by @9p4 in https://github.com/9p4/jellyfin-plugin-sso/pull/40\r\n* Revert \"Revert \"Add github action for publishing releases\"\" by @matthewstrasiotto in https://github.com/9p4/jellyfin-plugin-sso/pull/46\r\n* pin version of oddstr13/jprm to specific commit by @matthewstrasiotto in https://github.com/9p4/jellyfin-plugin-sso/pull/48\r\n* ci: pin kevinjil/jprm-action to specific sha by @matthewstrasiotto in https://github.com/9p4/jellyfin-plugin-sso/pull/50\r\n* ci: ignore prereleases when publishing manifest by @matthewstrasiotto in https://github.com/9p4/jellyfin-plugin-sso/pull/52\r\n* ci: add checksum to nightly builds by @matthewstrasiotto in https://github.com/9p4/jellyfin-plugin-sso/pull/53\r\n* ci: only run checksum agaisnt zip files by @matthewstrasiotto in https://github.com/9p4/jellyfin-plugin-sso/pull/54\r\n\r\n* build: ignore .vscode entirely in gitignore by @matthewstrasiotto in https://github.com/9p4/jellyfin-plugin-sso/pull/62\r\n\r\n**Full Changelog**: https://github.com/9p4/jellyfin-plugin-sso/compare/v3.3.0.0...v3.4.0.0",
+        "checksum": "e6491ad7efef9b72003ede34fca82c70",
+        "sourceUrl": "https://github.com/matthewstrasiotto/jellyfin-plugin-sso/releases/download/v3.4.0.0/sso-authentication_3.4.0.0.zip",
+        "targetAbi": "10.8.0.0",
+        "timestamp": "2022-08-18T07:36:41Z",
+        "version": "3.4.0.0"
+      },
+      {
         "changelog": "",
         "checksum": "e7640f4ac39888f6e7eaa091044af9a6",
         "sourceUrl": "https://github.com/matthewstrasiotto/jellyfin-plugin-sso/releases/download/4-test-release/sso-authentication_3.3.0.0.zip",
